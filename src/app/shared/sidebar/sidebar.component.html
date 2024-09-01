@@ -1,0 +1,144 @@
+<div class="modal-dialog modal-dialog-centered ">
+    <div class="modal-content rounded overflow-hidden">
+
+        <ul class="list-group rounded-0 border-bottom border-secondary align-self-start w-100">
+            <li class="list-group-item border-0">
+                <div class="input-group">
+                    <div class="input-group-text bg-light">
+                        <i class="bi bi-search"></i>
+                    </div>
+
+                    <input type="search" (keydown)="applyFilteration()" [(ngModel)]="searchTitle"
+                        class=" form-control custom-focus" placeholder="Search">
+                </div>
+            </li>
+        </ul>
+
+        <ul class="list-group rounded-0 border-bottom border-secondary align-self-start w-100 overflow-x-auto"
+            style="max-height: 200px;">
+            <li class="list-group-item border-0 text-uppercase fw-semibold">category</li>
+
+            <li class="list-group-item border-0">
+                <button class="text-start text-capitalize btn btn-light w-100"
+                    (click)="getProductByCategory(null)">all</button>
+            </li>
+
+            @for(category of categoriesNames; track $index){
+            <li class="list-group-item border-0">
+                <button class="text-start text-capitalize btn btn-light w-100"
+                    [class.active]="clickedCategory == category.name"
+                    (click)="getProductByCategory(category.name)">{{category.name}}</button>
+            </li>
+            }
+
+
+        </ul>
+
+        <ul class="list-group rounded-0 border-bottom border-secondary align-self-start w-100">
+
+            <li class="list-group-item border-0 border-bottom-1 text-uppercase fw-semibold">Sort</li>
+            <li class="list-group-item">
+                <div class="dropdown">
+                    <a class="btn btn-light text-capitalize text-start dropdown-toggle p-2 d-block fw-semibold"
+                        type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        sort by:
+                    </a>
+
+                    <ul class="dropdown-menu w-100">
+                        <li>
+                            <a class="dropdown-item p-2" [class.active]="sortName" (click)="onSortName()">
+                                <span>name</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item p-2" [class.active]="sortPriceAsc" (click)="onSortPriceAsc()">
+                                <span>price: low to high</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item p-2" [class.active]="sortPriceDesc" (click)="onSortPriceDesc()">
+                                <span>price: high to low</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+
+        <ul class="list-group rounded-0 border-bottom border-secondary align-self-start w-100">
+            <li class="list-group-item border-bottom-0 text-uppercase fw-semibold">product
+                rating
+            </li>
+
+            <li class="list-group-item border-0">
+                <input class="form-check-input me-2" name="starsRating" (change)="getStarsRate($event)" value="4"
+                    type="radio" id="fourStars">
+                <label class="form-check-label" for="fourStars">
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-muted"></i>
+                    & above
+                </label>
+            </li>
+
+            <li class="list-group-item border-0">
+                <input class="form-check-input me-2" name="starsRating" (change)="getStarsRate($event)" value="3"
+                    type="radio" id="threeStars">
+                <label class="form-check-label" for="threeStars">
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-muted"></i>
+                    <i class="bi bi-star-fill text-muted"></i>
+                    & above
+                </label>
+            </li>
+
+            <li class="list-group-item border-0">
+                <input class="form-check-input me-2" name="starsRating" (change)="getStarsRate($event)" value="2"
+                    type="radio" id="twoStars">
+                <label class="form-check-label" for="twoStars">
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-muted"></i>
+                    <i class="bi bi-star-fill text-muted"></i>
+                    <i class="bi bi-star-fill text-muted"></i>
+                    & above
+                </label>
+            </li>
+
+            <li class="list-group-item border-0">
+                <input class="form-check-input me-2" name="starsRating" (change)="getStarsRate($event)" value="1"
+                    type="radio" id="oneStar">
+                <label class="form-check-label" for="oneStar">
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-muted"></i>
+                    <i class="bi bi-star-fill text-muted"></i>
+                    <i class="bi bi-star-fill text-muted"></i>
+                    <i class="bi bi-star-fill text-muted"></i>
+                    & above
+                </label>
+            </li>
+        </ul>
+
+        <ul class="list-group rounded-0 align-self-start w-100">
+            <li class="list-group-item border-bottom-0 text-uppercase fw-semibold">price Range
+            </li>
+
+            <li class="list-group-item border-bottom-0 text-uppercase">max price:
+                {{maxPrice}}
+            </li>
+            <li class="list-group-item border-0">
+                <mat-slider min="0" max="45000" step="50" class="w-100" showTickMarks discrete>
+                    <input (change)="applyFilteration()" matSliderThumb [(ngModel)]="maxPrice">
+                </mat-slider>
+            </li>
+        </ul>
+
+
+    </div>
+</div>

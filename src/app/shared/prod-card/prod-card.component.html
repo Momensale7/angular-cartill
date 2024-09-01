@@ -1,0 +1,59 @@
+@for(product of products; track $index){
+<div class="border-0 col-12 col-md-6 col-lg-3 card mb-3">
+    <a style="cursor: pointer;" (click)="goToDetails(product.id)">
+        <img class="w-100" [src]="product.imageCover" alt="">
+    </a>
+
+    <div class="card-body p-1">
+        <h4 class="card-text fs-6 text-truncate mb-1">
+            <a style="cursor: pointer;" (click)="goToDetails(product.id)">
+                {{product.title}}
+            </a>
+        </h4>
+        <h6 class="card-title mb-0">{{product.price}} EGP</h6>
+        <div class="d-flex align-items-center justify-content-between mt-2">
+
+            <ul class="list-inline small m-0">
+                <li class="list-inline-item m-0" *ngFor="let item of getStarsCount(product.ratingsAverage)">
+                    <i class="bi bi-star-fill text-warning"></i>
+                </li>
+
+                <li class="list-inline-item m-0"
+                    *ngFor="let item of [].constructor(5 - getStarsCount(product.ratingsAverage).length)">
+                    <i class="bi bi-star"></i>
+                </li>
+            </ul>
+
+            <div class="addToFav px-1 d-flex align-items-center justify-content-center rounded-circle"
+                style="--bs-bg-opacity: .3; width: 40px; height: 40px; cursor: pointer;">
+                <mat-icon aria-hidden="false" fontIcon="favorite_border"></mat-icon>
+                <!-- <mat-icon aria-hidden="false" fontIcon="favorite"></mat-icon> -->
+            </div>
+        </div>
+
+    </div>
+    <div class="text-center my-2">
+        <button (click)="add(product.id)" class="btn btn-primary shadow w-100" data-bs-toggle="modal">order
+            now</button>
+    </div>
+</div>
+}
+
+
+<!-- @for(product of products; track $index){
+<div class="card col-12 col-md-4 rounded shadow border-0">
+    <div class="card-body border-danger p-4"><img [src]="product.imageCover" alt=""
+            class="img-fluid d-block mx-auto mb-3">
+        <h5> <a class="text-dark">{{product.title}}</a></h5>
+        <h6>{{product.price}}</h6>
+        <p class="small text-muted font-italic text-truncate">{{product.description}}</p>
+
+        <ul class="list-inline small">
+            <li class="list-inline-item m-0" *ngFor="let item of getStarsCount(product.ratingsAverage)">
+                <i class="bi bi-star-fill text-warning"></i>
+            </li>
+        </ul>
+
+    </div>
+</div>
+} -->

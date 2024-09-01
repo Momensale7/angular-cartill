@@ -1,0 +1,118 @@
+<header>
+
+    <!-- Heading -->
+    <div class="bg-primary">
+        <div class="container py-4">
+            <!-- Breadcrumb -->
+            <nav class="d-flex">
+                <h6 class="mb-0">
+                    <a routerLink="/home" class="text-white-50">Home</a>
+                    <span class="text-white-50 mx-2"> > </span>
+                    <a class="text-white">Product Details</a>
+                </h6>
+            </nav>
+            <!-- Breadcrumb -->
+        </div>
+    </div>
+    <!-- Heading -->
+</header>
+
+<!-- content -->
+<section class="py-5 product-details">
+
+    <div class="container">
+        <app-loader class="mx-auto"></app-loader>
+
+        <div class="row gx-5">
+            <aside class="col-lg-6">
+                <div class="border rounded-4 mb-3 d-flex align-items-center justify-content-center">
+                    <div class="d-flex flex-column align-items-between justify-content-center gap-3 m-3">
+                        @for(img of product.images; track $index){
+                        <a class="border mx-1 rounded-2" class="item-thumb">
+                            <img width="130" class="rounded-4" [src]="img" />
+                        </a>
+                        }
+                    </div>
+
+                    <a class="rounded-4 py-2">
+                        <img style="max-width: 100%; margin: auto;" class="rounded-4 fit" [src]="product.imageCover" />
+                    </a>
+                </div>
+            </aside>
+            <main class="col-lg-6">
+                <div class="ps-lg-3">
+                    <h4 class="title text-dark">
+                        {{product.title}}
+                    </h4>
+                    <div class="d-flex flex-row my-3">
+                        <ul class="list-inline small m-0">
+                            <li class="list-inline-item m-0" *ngFor="let item of getStarsCount(product.ratingsAverage)">
+                                <i class="bi bi-star-fill text-warning"></i>
+                            </li>
+
+                            <li class="list-inline-item m-0"
+                                *ngFor="let item of [].constructor(5 - getStarsCount(product.ratingsAverage).length)">
+                                <i class="bi bi-star"></i>
+                            </li>
+                        </ul>
+                        <span class="text-muted">
+                            <i class="bi bi-basket mx-1"></i>
+                            {{product.sold}}
+                            orders</span>
+
+                        @if(product.quantity > 20){
+                        <span class="text-success ms-2">In stock</span>
+                        }
+                        @else if(product.quantity < 20){ <span class="text-secondary ms-2">Limited Stock</span>
+                            } @else {
+                            <span class="text-danger ms-2">Out Of Stock</span>
+                            }
+                    </div>
+
+                    <div class="mb-3">
+                        <span class="h5">{{product.price}} .EGP</span>
+                    </div>
+
+                    <p>
+                        {{product.description}}
+                    </p>
+
+                    <div class="row">
+                        <dt class="col-3">Category:</dt>
+                        <dd class="col-9">{{product.category.name}}</dd>
+
+                        <dt class="col-3">Brand</dt>
+                        <dd class="col-9">{{product.brand.name}}</dd>
+                    </div>
+
+                    <hr />
+
+                    <div class="row mb-4">
+                        <!-- col.// -->
+                        <div class="col-md-4 col-6 mb-3">
+                            <label class="mb-2 d-block">Quantity</label>
+                            <div class="input-group mb-3" style="width: 170px;">
+                                <button class="btn btn-white border border-secondary px-3" type="button">
+                                    <i class="bi bi-dash-circle"></i>
+                                </button>
+                                <input type="text" class="form-control text-center border border-secondary" value="1" />
+                                <button class="btn btn-white border border-secondary px-3" type="button">
+                                    <i class="bi bi-plus-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a (click)="add(product.id)"  class="btn btn-primary me-2">
+                        <i class="bi bi-cart-check" ></i> Add to
+                        cart
+                    </a>
+
+                    <a  class="btn btn-danger bg-gradient">
+                        <i class="bi bi-heart"></i> Add to wishlist </a>
+                </div>
+            </main>
+        </div>
+    </div>
+</section>
+<!-- content -->

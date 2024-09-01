@@ -1,0 +1,94 @@
+<nav class="navbar sticky-top navbar-expand-lg navColor">
+    <div class="container gap-2">
+      <a class="navbar-brand text-white fs-2"><img src="../../../assets/images/logo.png" alt="" class="w-50p me-3">Cartill</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-list text-white fs-2"></i>        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <div class="navbar-nav ms-auto gap-3 d-flex align-items-center justify-content-end">
+              <div class="nav-item">
+                    <a class="btn btn-light p-2 fw-semibold " routerLink="home" routerLinkActive="active"
+                        aria-current="page">
+                        <i class="bi bi-basket2"></i>
+                        Home
+                      </a>
+                    </div>
+                    @if(isUserHasToken){
+                <div class="nav-item">
+                    <a class="btn btn-light p-2 fw-semibold "routerLink="cart" routerLinkActive="active">
+                        <i class="bi bi-cart3"></i>
+                        Cart
+                    </a>
+                </div>
+                }
+
+                <!-- account -->
+                <div class="dropdown">
+                    <a class="btn btn-light  dropdown-toggle p-2 fw-semibold" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="bi bi-person"></i>
+                        Account
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        @if(isUserHasToken){
+                        <li class="text-center my-2">
+                            <button class="btn btn-dark shadow w-75" (click)="authService.logOut()" id="logOut">log
+                                out</button>
+                        </li>
+
+                        <li class="border-top border-secondary">
+                            <a class="dropdown-item p-2" href="#">
+                                <i class="bi bi-person fs-5"></i>
+                                <span>My account</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item p-2" routerLink="cart" >
+                                <i class="bi bi-basket3"></i>
+                                <span>cart</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item p-2" href="#">
+                                <i class="bi bi-bag-heart"></i>
+                                <span>Saved Items</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item p-2" href="#"  routerLink="changePass" >
+                                <i class="bi bi-bag-heart"></i>
+                                <span>change password</span>
+                            </a>
+                        </li>
+                        }
+                        @else {
+                        <li class="text-center my-2">
+                            <a routerLinkActive="btn-warning" routerLink="login"
+                                class="btn btn-secondary shadow w-75">sign
+                                in</a>
+                        </li>
+                        <li class="text-center my-2">
+                            <a routerLinkActive="btn-warning" routerLink="register"
+                                class="btn btn-secondary shadow w-75">sign
+                                up</a>
+                        </li>
+                        }
+
+
+                    </ul>
+                </div>
+
+                <div class="nav-item">
+                    <a class="btn btn-light p-2 fw-semibold " routerLink="about" routerLinkActive="active"
+                        aria-current="page">
+                        <i class="bi bi-info-circle"></i>
+                        about
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</nav>

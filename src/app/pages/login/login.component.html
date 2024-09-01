@@ -1,0 +1,60 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-lg-7 mx-auto py-4">
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <h1 class="display-4 mb-3 mt-2 text-primary">Login Now :</h1>
+        @if(errorMessage){
+          <div class="alert alert-danger py-1 mb-2 text-center" role="alert">invalid email or password</div>
+        }
+        <div class="form-group mb-4">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" class="form-control" formControlName="email" />
+          @if (loginForm.get('email')?.errors && loginForm.get('email')?.touched ){
+            <div class="form-text text-danger">
+              @if (loginForm.get('email')?.errors['required']){
+                <p class="mb-1 alert alert-danger py-1 mb-4">required</p>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="form-group mb-4">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" class="form-control" formControlName="password"/>
+          @if (loginForm.get('password')?.errors && loginForm.get('password')?.touched ){
+            <div class="form-text text-danger">
+              @if (loginForm.get('password')?.errors['required']){
+                <p class="mb-1 alert alert-danger py-1 mb-4">required</p>
+              }
+            </div>
+          }
+        </div>
+
+        <button type="submit" [disabled]="isLoading" class="btn btn-primary d-block ms-auto">
+          @if (isLoading){
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          }
+          @else{
+            Submit
+          }
+        </button>
+      </form>
+    </div>
+    <div class="col-lg-5 text-center">
+      <img src="../../../assets/images/login.png" class="img-fluid" style="max-height: 350px;">
+    </div>
+  </div>
+</div>
+<!-- <div class="h-75 bg header">
+  <div  id="particles-js" class="w-100 header-particles"  >
+
+  </div>
+  <div class="header-container w-100">
+      <div>
+          <h1> Big Header</h1>
+          <div>small header</div>
+      </div>
+  </div>
+</div> -->

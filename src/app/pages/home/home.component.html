@@ -1,0 +1,51 @@
+<section class="bg-light py-4 ">
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Filter Products</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <app-sidebar class="align-self-start col-3" [pageSize]="pageSize" [products]="products"
+                        [currentPage]="currentPage" (itemsLengthEvent)="getItemsLenght($event)"
+                        (filterProductsEvent)="getFilterProducts($event)"></app-sidebar>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-between">
+
+            <!-- Button trigger modal -->
+            <button type="button" id="modalBtn" class="d-block d-lg-none btn btn-primary text-uppercase fw-bold"
+                data-bs-toggle="modal" data-bs-target="#exampleModal">
+                filter
+                <i class="bi bi-sliders"></i>
+            </button>
+
+            <app-sidebar class="d-none d-lg-block align-self-start col-3" [pageSize]="pageSize" [products]="products"
+                [currentPage]="currentPage" (itemsLengthEvent)="getItemsLenght($event)"
+                (filterProductsEvent)="getFilterProducts($event)"></app-sidebar>
+
+            <div class="col-12 col-md-8 p-5 p-md-3 bg-white rounded justify-content-center align-items-center">
+                <app-loader></app-loader>
+                <app-prod-card class="row justify-content-between" [products]="filterdProducts"></app-prod-card>
+            </div>
+        </div>
+
+        <mat-paginator class="bg-light" [length]="totalItems" [showFirstLastButtons]="true" [pageSize]="pageSize"
+            [pageIndex]="currentPage" (page)="pageChanged($event)">
+        </mat-paginator>
+    </div>
+
+</section>

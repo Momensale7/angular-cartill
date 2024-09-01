@@ -1,0 +1,11 @@
+.activeLink{
+  /* background-color: grey; */
+  /* border-radius: 5px; */
+  border-bottom: 2px solid gray;
+}
+.navColor{
+  background-color: #020617;
+}
+.w-50p{
+  width: 50px;
+}
