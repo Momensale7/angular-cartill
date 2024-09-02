@@ -1,0 +1,10 @@
+<div class="favorites-page">
+  <h1>Your Favorites</h1>
+  <div class="favorites-container">
+    <div class="row">
+      <div class="col-md-3" *ngFor="let product of favorites">
+        <app-prod-card [products]="product"></app-prod-card>
+      </div>
+    </div>
+  </div>
+</div>

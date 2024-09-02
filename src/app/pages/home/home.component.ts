@@ -2,7 +2,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { MatIconModule } from '@angular/material/icon';
 import { ProductsService } from './../../services/products.service';
-import { Component, EventEmitter, Output, output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ProdCardComponent } from '../../shared/prod-card/prod-card.component';
 import { SidebarComponent } from "../../shared/sidebar/sidebar.component";
 import { LoaderComponent } from "../../shared/loader/loader.component";
@@ -11,12 +11,17 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ProdCardComponent, MatIconModule, SidebarComponent, MatPaginatorModule, LoaderComponent],
+  imports: [
+    ProdCardComponent,
+    MatIconModule,
+    SidebarComponent,
+    MatPaginatorModule,
+    LoaderComponent,
+  ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.css',
 })
 export class HomeComponent {
-
   products: any;
   filterdProducts: any;
   totalItems: any;
@@ -25,13 +30,17 @@ export class HomeComponent {
 
   onPageChange = new EventEmitter<number>();
 
-  constructor(private _productsService: ProductsService,private _cart:CartService,private router:Router) {
+  constructor(
+    private _productsService: ProductsService,
+    private _cart: CartService,
+    private router: Router,
+  ) {
+    // Added FavoritesService to constructor
     this._productsService.getAllProducts().subscribe({
       next: (res) => {
-        this.products = res.data
-      }
+        this.products = res.data;
+      },
     });
-
   }
 
   getFilterProducts(filterProds: any) {
@@ -46,6 +55,5 @@ export class HomeComponent {
     this.currentPage = event.pageIndex;
   }
 
-  
-
+ 
 }

@@ -1,10 +1,9 @@
-
 import { Routes } from '@angular/router';
 import { authGuard } from '../../auth.guard';
 import { CartComponent } from './pages/cart/cart.component';
 import { ChangePassComponent } from './pages/change-pass/change-pass.component';
 import { ShipingAddressComponent } from './pages/shiping-address/shiping-address.component';
-// import {ProductsComponent} from "./pages/products/products.component"
+import { FavoritesComponent } from './pages/favorites/favorites.component'; // Added FavoritesComponent
 
 export const routes: Routes = [
     // home route
@@ -27,12 +26,14 @@ export const routes: Routes = [
         path: "register",
         loadComponent: () => import("./pages/register/register.component").then(m => m.RegisterComponent)
     },
+    
 
     // other routes
 
     {path:"cart",canActivate:[authGuard],component:CartComponent},
     {path:"changePass",canActivate:[authGuard],component:ChangePassComponent},
-    {path:"shipping/:id",canActivate:[authGuard],component:ShipingAddressComponent}
+    {path:"shipping/:id",canActivate:[authGuard],component:ShipingAddressComponent},
+    {path:"favorites",canActivate:[authGuard],component:FavoritesComponent} // Added Favorites route
     // {path:"login",canActivate:[authGuard],component:LoginComponent},
     // {path:"register",canActivate:[authGuard],component:RegisterComponent}
 
