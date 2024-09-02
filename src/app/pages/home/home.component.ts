@@ -8,10 +8,11 @@ import { SidebarComponent } from "../../shared/sidebar/sidebar.component";
 import { LoaderComponent } from "../../shared/loader/loader.component";
 import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
+import { CategoryComponent } from '../../shared/category/category.component';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ProdCardComponent, MatIconModule, SidebarComponent, MatPaginatorModule, LoaderComponent],
+  imports: [ProdCardComponent, MatIconModule, SidebarComponent, MatPaginatorModule, LoaderComponent ,CategoryComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -46,6 +47,6 @@ export class HomeComponent {
     this.currentPage = event.pageIndex;
   }
 
-  
+
 
 }

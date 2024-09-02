@@ -1,0 +1,20 @@
+<section class="container m-auto my-4">
+  <h2 class="text-center text-blue-600 font-bold text-2xl">categories</h2>
+  <div class="card privat bg-transparent border-0">
+    <p-carousel [value]="categories" [numVisible]="4" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions" [autoplayInterval]="2000">
+        <ng-template let-category pTemplate="item">
+            <div class="m-2 p-0  rounded-t-md overflow-hidden  bg-transparent border-0">
+                <div class="mb-3">
+                    <div class="relative mx-auto ">
+                        <img [src]="category.image"
+                            [alt]="category.categoryName" class="w-full rounded h-60 " />
+                    </div>
+                </div>
+                <div class="mb-2 text-center text-primary fw-medium text-xl">
+                    {{ category.name}}
+                </div>
+            </div>
+        </ng-template>
+    </p-carousel>
+</div>
+</section>
